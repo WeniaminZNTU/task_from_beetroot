@@ -198,7 +198,53 @@ h1, h2, h3 {
 }
 
 /* My css */
-
+/* 
+============================================================================================================
+*/
 .displayNone{
     display: none;
+}
+
+
+.boxModalWindow{
+    position: fixed;
+
+    height: 234px;
+    width: 374px;
+
+    margin-top: 9%;
+    margin-left: 35%;
+
+    /* box-sizing: border-box;
+    width: 100%; */
+
+    border: 1px solid black;
+
+    background-color: blanchedalmond;
+}
+
+.enterData{
+    /* margin: 0, 100px; */
+    /* padding-top: 0px; */
+}
+
+.mainForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-flow: column nowrap;
+
+}
+
+.padding{
+    padding: 1em;
+}
+
+.inputPass{
+    padding-right: 39px;
+}
+
+.submitButton{
+    padding: 0.6em 7.5em;
 }

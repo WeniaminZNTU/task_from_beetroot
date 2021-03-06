@@ -17,7 +17,7 @@
                 <span class="top-cart-info__item">
                      Товаров в корзине - <span id="numOfItems" class="red-info">XXX</span>,
                       на сумму <span id="totalAmount" class="red-info">XXX</span> грн</span>
-                <button class="btn-check">Оформить заказ</button>
+                <button id="checkout" class="btn-check">Оформить заказ</button>
             </div>
         </div><!-- /.top-cart-info -->
 
@@ -243,8 +243,22 @@
             </div>
         </div>
     </footer>
-</div><!-- /.app-container -->
 
+    <div id="modalWindow" class="boxModalWindow">
+        <form class="mainForm">
+            <span class="enterData padding">Введите данные</span>
+            <div class="padding">
+            <span class="padding">Имя: </span><input id="inputMail" type="text">
+            </div>
+            <div  class="inputPass padding">
+            <span  class="padding">Пароль: </span><input id="inputPass" type="password">
+            </div>
+            <button id="submitButton" class="submitButton" type="submit">Отправить</button>
+        </form>
+    </div>
+    
+
+</div><!-- /.app-container -->
 
 
 </body>
