@@ -2,13 +2,13 @@
 // error
 // import {totalAmount,numOfItems,category,price,cards} from './DOM'
 
-let totalAmount = document.getElementById('totalAmount');
-let numOfItems = document.getElementById('numOfItems');
-totalAmount.textContent = '0';
-numOfItems.textContent = '0';
+let totalBuyPrice = document.getElementById('totalAmount');
+let count = document.getElementById('numOfItems');
+totalBuyPrice.textContent = '0';
+count.textContent = '0';
 
 const category = document.getElementById('category');
-const price = document.getElementById('price');
+const priceCategory = document.getElementById('price');
 
 const cards = [...document.getElementsByClassName('product-box__item')];
 const prices = [...document.getElementsByTagName('p')];
@@ -24,11 +24,16 @@ const inputMail = document.getElementById('inputMail');
 const inputPass = document.getElementById('inputPass');
 const submitButton = document.getElementById('submitButton');
 
+// Task 3
+// =========================================================================================================
+checkout.addEventListener('click', (event)=>{
+    modalWindow.classList.remove('displayNone');
+})
 
 submitButton.addEventListener('click', (event)=>{
     if((inputMail.value).match(/\S+/) && inputPass.value.match(/\S+/)){
-        totalAmount.textContent = '0';
-        numOfItems.textContent = '0';
+        totalBuyPrice.textContent = '0';
+        count.textContent = '0';
 
         alert('Спасибо за покупки!\nЗаходите на наш сайт ещё!')
     }
@@ -38,32 +43,31 @@ submitButton.addEventListener('click', (event)=>{
     }
 })
 
-checkout.addEventListener('click', (event)=>{
-    modalWindow.classList.remove('displayNone');
-})
-
+// Task 2
+// =========================================================================================================
 addButtons.forEach((elem, index)=>{ 
     elem.addEventListener('click', (event)=>{
         if(!event.target.parentElement.children[1].children[0].value || event.target.parentElement.children[1].children[0].value === '0'){
-            totalAmount.textContent = (strToNum(totalAmount.textContent) + strToNum(event.target.parentElement.children[0].textContent)).toString();
-            numOfItems.textContent = (strToNum(numOfItems.textContent) + 1).toString();
+            totalBuyPrice.textContent = (strToNum(totalBuyPrice.textContent) + strToNum(event.target.parentElement.children[0].textContent)).toString();
+            count.textContent = (strToNum(count.textContent) + 1).toString();
         }
         else{
-            totalAmount.textContent = (event.target.parentElement.children[1].children[0].value * strToNum(event.target.parentElement.children[0].textContent) + strToNum(totalAmount.textContent)).toString();
-            numOfItems.textContent = (strToNum(event.target.parentElement.children[1].children[0].value) + strToNum(numOfItems.textContent)).toString();
+            totalBuyPrice.textContent = (event.target.parentElement.children[1].children[0].value * strToNum(event.target.parentElement.children[0].textContent) + strToNum(totalBuyPrice.textContent)).toString();
+            count.textContent = (strToNum(event.target.parentElement.children[1].children[0].value) + strToNum(count.textContent)).toString();
             event.target.parentElement.children[1].children[0].value = '';
         }
     })
 })
 
+// Task 1
+// =========================================================================================================
 category.addEventListener('click', (event)=>{
-    selectionItems(category, price);
+    selectionItems(category, priceCategory);
 });
 
 
-
-price.addEventListener('click', (event)=>{
-    selectionItems(category, price);
+priceCategory.addEventListener('click', (event)=>{
+    selectionItems(category, priceCategory);
     
 });
 

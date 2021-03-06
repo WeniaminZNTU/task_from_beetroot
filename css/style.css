@@ -223,11 +223,6 @@ h1, h2, h3 {
     background-color: blanchedalmond;
 }
 
-.enterData{
-    /* margin: 0, 100px; */
-    /* padding-top: 0px; */
-}
-
 .mainForm{
     display: flex;
     align-items: center;
