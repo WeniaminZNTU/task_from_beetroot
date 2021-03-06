@@ -79,222 +79,84 @@ function strToNum(str){
 }
 
 function selectionItems(category, price){
+    cards.forEach((elem, index)=>{
+        if(category.selectedIndex === 0){
+            selectionByPrice(elem, price.selectedIndex, index);
+        }
 
-    if(category.selectedIndex === 0 && price.selectedIndex === 0){
-        cards.forEach((elem, index,)=>{
-             elem.classList.remove('displayNone');
-        })
-     }
-
-     if(category.selectedIndex === 0 && price.selectedIndex === 1){
-        cards.forEach((elem, index,)=>{
-            if(strToNum(prices[index]) > 30){
-                elem.classList.add('displayNone');                
-            }
-            else{
-                elem.classList.remove('displayNone');
-            }
-        });
-    }
-
-    if(category.selectedIndex === 0 && price.selectedIndex === 2){
-        cards.forEach((elem, index,)=>{
-            if(strToNum(prices[index]) > 50){
-                elem.classList.add('displayNone');                
-            }
-            else{
-                elem.classList.remove('displayNone');
-            }
-        });
-    }
-
-    if(category.selectedIndex === 0 && price.selectedIndex === 3){
-        cards.forEach((elem, index,)=>{
-            if(strToNum(prices[index]) > 100){
-                elem.classList.add('displayNone');                
-            }
-            else{
-                elem.classList.remove('displayNone');
-            }
-        });
-    }
-
-    if(category.selectedIndex === 0 && price.selectedIndex === 4){
-        cards.forEach((elem, index,)=>{
-            if(strToNum(prices[index]) > 150){
-                elem.classList.add('displayNone');                
-            }
-            else{
-                elem.classList.remove('displayNone');
-            }
-        });
-    }
-
-    if(category.selectedIndex === 1 && price.selectedIndex === 0){
-        cards.forEach((elem, index)=>{
+        if(category.selectedIndex === 1){
             if(index < 4){
-                elem.classList.remove('displayNone');
+            selectionByPrice(elem, price.selectedIndex, index);
             }
             else{
                 elem.classList.add('displayNone');
             }
-        })
-     }
+        }
 
-     if(category.selectedIndex === 1 && price.selectedIndex === 1){
-        cards.forEach((elem, index)=>{
-            if(index < 4 && strToNum(prices[index].textContent) < 30){
-                elem.classList.remove('displayNone');
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        })
-     }
-
-     if(category.selectedIndex === 1 && price.selectedIndex === 2){
-        cards.forEach((elem, index)=>{
-            if(index < 4 && strToNum(prices[index].textContent) < 50){
-                elem.classList.remove('displayNone');
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        })
-     }
-
-     if(category.selectedIndex === 1 && price.selectedIndex === 3){
-        cards.forEach((elem, index)=>{
-            if(index < 4 && strToNum(prices[index].textContent) < 100){
-                elem.classList.remove('displayNone');
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        })
-     }
-
-     if(category.selectedIndex === 1 && price.selectedIndex === 4){
-        cards.forEach((elem, index)=>{
-            if(index < 4 && strToNum(prices[index].textContent) < 150){
-                elem.classList.remove('displayNone');
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        })
-     }
-
-    if(category.selectedIndex === 2 && price.selectedIndex === 0){
-        cards.forEach((elem, index)=>{
+        if(category.selectedIndex === 2){
             if(index >= 4 && index <= 7){
-                elem.classList.remove('displayNone');
+                selectionByPrice(elem, price.selectedIndex, index);
             }
             else{
                 elem.classList.add('displayNone');
             }
-    })
- }
+        }
 
-    if(category.selectedIndex === 2 && price.selectedIndex === 1){
-    cards.forEach((elem, index)=>{
-        if((index >= 4 && index <= 7) && strToNum(prices[index].textContent) < 30){
-            elem.classList.remove('displayNone');
+        if(category.selectedIndex === 3){
+            if(index > 7 && index <= 11){
+                selectionByPrice(elem, price.selectedIndex, index);
+            }
+            else{
+                elem.classList.add('displayNone');
+            }
+        }
+
+    
+    })
+
+
+}
+
+function selectionByPrice(item, priceIndex, index){
+
+    if(priceIndex === 0){
+        item.classList.remove('displayNone');
+    }
+
+    if(priceIndex === 1){
+        if(strToNum(prices[index].textContent) < 30){
+            item.classList.remove('displayNone');
         }
         else{
-            elem.classList.add('displayNone');
+            item.classList.add('displayNone');
         }
-    })
- }
-
-
-     if(category.selectedIndex === 2 && price.selectedIndex === 2){
-       cards.forEach((elem, index)=>{
-            if((index >= 4 && index <= 7) && strToNum(prices[index].textContent) < 50){
-                elem.classList.remove('displayNone');
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        })
     }
 
-
-    if(category.selectedIndex === 2 && price.selectedIndex === 3){
-        cards.forEach((elem, index)=>{
-             if((index >= 4 && index <= 7) && strToNum(prices[index].textContent) < 100){
-                 elem.classList.remove('displayNone');
-             }
-             else{
-                 elem.classList.add('displayNone');
-             }
-         })
-     }
-
-     if(category.selectedIndex === 2 && price.selectedIndex === 4){
-        cards.forEach((elem, index)=>{
-             if((index >= 4 && index <= 7) && strToNum(prices[index].textContent) < 150){
-                 elem.classList.remove('displayNone');
-             }
-             else{
-                 elem.classList.add('displayNone');
-             }
-         })
-     }
- 
-    if(category.selectedIndex === 3 && price.selectedIndex === 0){
-    cards.forEach((elem, index)=>{
-        if(index >= 8 && index <= 11){
-            elem.classList.remove('displayNone');
+    if(priceIndex === 2){
+        if(strToNum(prices[index].textContent) < 50){
+            item.classList.remove('displayNone');
         }
         else{
-            elem.classList.add('displayNone');
+            item.classList.add('displayNone');
         }
-    })
- }
-
-     if(category.selectedIndex === 3 && price.selectedIndex === 1){
-        cards.forEach((elem, index)=>{
-            if((index >= 8 && index <= 11) && strToNum(prices[index].textContent) < 30){
-                elem.classList.remove('displayNone');
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        })
     }
 
-    if(category.selectedIndex === 3 && price.selectedIndex === 2){
-        cards.forEach((elem, index)=>{
-            if((index >= 8 && index <= 11) && strToNum(prices[index].textContent) < 50){
-                elem.classList.remove('displayNone');
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        })
+    if(priceIndex === 3){
+        if(strToNum(prices[index].textContent) < 100){
+            item.classList.remove('displayNone');
+        }
+        else{
+            item.classList.add('displayNone');
+        }
     }
 
-    if(category.selectedIndex === 3 && price.selectedIndex === 3){
-        cards.forEach((elem, index)=>{
-            if((index >= 8 && index <= 11) && strToNum(prices[index].textContent) < 100){
-                elem.classList.remove('displayNone');
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        })
-    }
-
-    if(category.selectedIndex === 3 && price.selectedIndex === 4){
-        cards.forEach((elem, index)=>{
-            if((index >= 8 && index <= 11) && strToNum(prices[index].textContent) < 150){
-                elem.classList.remove('displayNone');
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        })
+    if(priceIndex === 4){
+        if(strToNum(prices[index].textContent) < 150){
+            item.classList.remove('displayNone');
+        }
+        else{
+            item.classList.add('displayNone');
+        }
     }
 
 }
