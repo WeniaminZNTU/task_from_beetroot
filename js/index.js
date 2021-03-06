@@ -1,29 +1,45 @@
 'use strict';
-
+// error
 // import {totalAmount,numOfItems,category,price,cards} from './DOM'
 
-const totalAmount = document.getElementById('totalAmount').textContent = '0';
-const numOfItems = document.getElementById('numOfItems').textContent = '0';
-
+let totalAmount = document.getElementById('totalAmount');
+let numOfItems = document.getElementById('numOfItems');
+totalAmount.textContent = '0';
+numOfItems.textContent = '0';
+console.log(numOfItems.textContent);
 const category = document.getElementById('category');
-const price = document.getElementById('price')
+const price = document.getElementById('price');
 
 const cards = [...document.getElementsByClassName('product-box__item')];
-const prices = [...document.getElementsByTagName('p')]
+const prices = [...document.getElementsByTagName('p')];
+const multiplierCost = [...document.getElementsByClassName('qty__item')];
 
 const addButtons = [...document.getElementsByClassName('product-box__btn')];
 
+addButtons.forEach((elem, index)=>{
+    elem.addEventListener('click', (event)=>{
+        if(!event.target.parentElement.children[1].children[0].value || event.target.parentElement.children[1].children[0].value === '0'){
+            totalAmount.textContent = (strToNum(totalAmount.textContent) + strToNum(event.target.parentElement.children[0].textContent)).toString();
+            numOfItems.textContent = (strToNum(numOfItems.textContent) + 1).toString();
+        }
+        else{
+            totalAmount.textContent = (event.target.parentElement.children[1].children[0].value * strToNum(event.target.parentElement.children[0].textContent) + strToNum(totalAmount.textContent)).toString();
+            numOfItems.textContent = (strToNum(event.target.parentElement.children[1].children[0].value) + strToNum(numOfItems.textContent)).toString();
+            event.target.parentElement.children[1].children[0].value = '';
+        }
+    })
+})
 
 category.addEventListener('click', (event)=>{
     selectionItems(category, price);
-})
+});
 
 
 
 price.addEventListener('click', (event)=>{
     selectionItems(category, price);
     
-})
+});
 
 
 function strToNum(str){
