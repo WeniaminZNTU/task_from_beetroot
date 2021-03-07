@@ -3,9 +3,9 @@
 // import {totalAmount,numOfItems,category,price,cards} from './DOM'
 
 let totalBuyPrice = document.getElementById('totalAmount');
-let count = document.getElementById('numOfItems');
+let countItems = document.getElementById('numOfItems');
 totalBuyPrice.textContent = '0';
-count.textContent = '0';
+countItems.textContent = '0';
 
 const category = document.getElementById('category');
 const priceCategory = document.getElementById('price');
@@ -33,7 +33,7 @@ checkout.addEventListener('click', (event)=>{
 submitButton.addEventListener('click', (event)=>{
     if((inputMail.value).match(/\S+/) && inputPass.value.match(/\S+/)){
         totalBuyPrice.textContent = '0';
-        count.textContent = '0';
+        countItems.textContent = '0';
 
         alert('Спасибо за покупки!\nЗаходите на наш сайт ещё!')
     }
@@ -47,15 +47,26 @@ submitButton.addEventListener('click', (event)=>{
 // =========================================================================================================
 addButtons.forEach((elem, index)=>{ 
     elem.addEventListener('click', (event)=>{
-        if(!event.target.parentElement.children[1].children[0].value || event.target.parentElement.children[1].children[0].value === '0'){
-            totalBuyPrice.textContent = (strToNum(totalBuyPrice.textContent) + strToNum(event.target.parentElement.children[0].textContent)).toString();
-            count.textContent = (strToNum(count.textContent) + 1).toString();
+        let {target:{
+            parentElement:{
+                children:[p,div]
+            }}} = event;
+
+        let {children:[input]} = div;
+
+        if(input.value === '' || input.value === '1'){
+            totalBuyPrice.textContent = (strToNum(totalBuyPrice.textContent) + strToNum(p.textContent)).toString();
+            countItems.textContent = (strToNum(countItems.textContent) + 1).toString();
         }
-        else{
-            totalBuyPrice.textContent = (event.target.parentElement.children[1].children[0].value * strToNum(event.target.parentElement.children[0].textContent) + strToNum(totalBuyPrice.textContent)).toString();
-            count.textContent = (strToNum(event.target.parentElement.children[1].children[0].value) + strToNum(count.textContent)).toString();
+        else if(strToNum(input.value) > 1){
+            totalBuyPrice.textContent = (input.value * strToNum(p.textContent) + strToNum(totalBuyPrice.textContent)).toString();
+            countItems.textContent = (strToNum(input.value) + strToNum(countItems.textContent)).toString();
             event.target.parentElement.children[1].children[0].value = '';
         }
+        else{
+            input.value = '';
+            return;
+    }
     })
 })
 
@@ -74,7 +85,7 @@ priceCategory.addEventListener('click', (event)=>{
 
 
 function strToNum(str){
-    const tempArr = str.match(/\d+/);
+    const tempArr = str.match(/^[\s\-\d]|\d+/);
     return Number(tempArr.toString());
 }
 
