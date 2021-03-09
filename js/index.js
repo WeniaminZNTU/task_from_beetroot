@@ -85,7 +85,7 @@ priceCategory.addEventListener('click', (event)=>{
 
 
 function strToNum(str){
-    const tempArr = str.match(/^[\s\-\d]|\d+/);
+    const tempArr = str.match(/[\-\d]+/);
     return Number(tempArr.toString());
 }
 
