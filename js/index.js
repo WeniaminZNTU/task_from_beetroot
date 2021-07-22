@@ -15,8 +15,8 @@ checkout.addEventListener('click', (event)=>{
 
 closeModalWindowBtn.addEventListener('click', (event)=> {
     wrapperModalWindow.classList.toggle('displayNone');
-    inputMail.textContent = '';
-    inputPass.textContent = '';
+    inputMail.value = '';
+    inputPass.value = '';
 });
 
 submitButton.addEventListener('click', (event)=>{
