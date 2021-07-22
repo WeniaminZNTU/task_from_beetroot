@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/myCss.css">
     <script defer type="module" src="./js/DOM.js"></script>
     <script defer type="module" src="./js/index.js"></script>
 </head>
@@ -244,19 +245,22 @@
         </div>
     </footer>
 
-    <div id="modalWindow" class="boxModalWindow">
-        <form class="mainForm">
-            <span class="padding">Введите данные</span>
-            <div class="padding">
-            <span class="padding">Имя: </span><input id="inputMail" type="text">
-            </div>
-            <div  class="inputPass padding">
-            <span  class="padding">Пароль: </span><input id="inputPass" type="password">
-            </div>
-            <button id="submitButton" class="submitButton" type="submit">Отправить</button>
-        </form>
+    <div id="wrapperModalWindow" class="wrapperModalWindow displayNone">
+        <div id="modalWindow" class="boxModalWindow ">
+            <button id="closeModalWindow" class="closeModalButton">X</button>
+            <form class="mainForm">
+                <span class="padding">Введите данные</span>
+                <div class="padding">
+                <span class="padding">Имя: </span><input id="inputMail" type="text">
+                </div>
+                <div  class="inputPass padding">
+                <span  class="padding">Пароль: </span><input id="inputPass" type="password">
+                </div>
+                <button id="submitButton" class="submitButton" type="submit">Отправить</button>
+                <button id="cancelOrder" class="cancelOrder">Отменить заказ</button>
+            </form>
+        </div>
     </div>
-    
 
 </div><!-- /.app-container -->
 

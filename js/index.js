@@ -1,34 +1,23 @@
 'use strict';
-// error
-// import {totalAmount,numOfItems,category,price,cards} from './DOM'
 
-let totalBuyPrice = document.getElementById('totalAmount');
-let countItems = document.getElementById('numOfItems');
-totalBuyPrice.textContent = '0';
-countItems.textContent = '0';
-
-const category = document.getElementById('category');
-const priceCategory = document.getElementById('price');
-
-const cards = [...document.getElementsByClassName('product-box__item')];
-const prices = [...document.getElementsByTagName('p')];
-const multiplierCost = [...document.getElementsByClassName('qty__item')];
-const addButtons = [...document.getElementsByClassName('product-box__btn')];
-
-const checkout = document.getElementById('checkout');
-
-const modalWindow = document.getElementById('modalWindow');
-modalWindow.classList.add('displayNone');
-
-const inputMail = document.getElementById('inputMail');
-const inputPass = document.getElementById('inputPass');
-const submitButton = document.getElementById('submitButton');
+import {totalBuyPrice, countItems, category, priceCategory, cards, prices, multiplierCost, inputs, addButtons, checkout, wrapperModalWindow, closeModalWindowBtn, inputMail, inputPass, submitButton} from './DOM.js'
 
 // Task 3
 // =========================================================================================================
 checkout.addEventListener('click', (event)=>{
-    modalWindow.classList.remove('displayNone');
+    if((countItems.textContent) > 0){
+        wrapperModalWindow.classList.remove('displayNone');
+    }
+    else{
+        alert('Вы ничего не выбрали');
+    }
 })
+
+closeModalWindowBtn.addEventListener('click', (event)=> {
+    wrapperModalWindow.classList.toggle('displayNone');
+    inputMail.textContent = '';
+    inputPass.textContent = '';
+});
 
 submitButton.addEventListener('click', (event)=>{
     if((inputMail.value).match(/\S+/) && inputPass.value.match(/\S+/)){
@@ -54,19 +43,34 @@ addButtons.forEach((elem, index)=>{
 
         let {children:[input]} = div;
 
-        if(input.value === '' || input.value === '1'){
-            totalBuyPrice.textContent = (strToNum(totalBuyPrice.textContent) + strToNum(p.textContent)).toString();
-            countItems.textContent = (strToNum(countItems.textContent) + 1).toString();
+        if(input.value === ''){
+            return;
         }
-        else if(strToNum(input.value) > 1){
-            totalBuyPrice.textContent = (input.value * strToNum(p.textContent) + strToNum(totalBuyPrice.textContent)).toString();
-            countItems.textContent = (strToNum(input.value) + strToNum(countItems.textContent)).toString();
-            event.target.parentElement.children[1].children[0].value = '';
+
+        if(input.value === '1'){
+            totalBuyPrice.textContent = (toNum(totalBuyPrice.textContent) + toNum(p.textContent)).toString();
+            countItems.textContent = (toNum(countItems.textContent) + 1).toString();
+
+            input.value = '';
         }
-        else{
+        else if(toNum(input.value) > 1){
+            totalBuyPrice.textContent = (input.value * toNum(p.textContent) + toNum(totalBuyPrice.textContent)).toString();
+            countItems.textContent = (toNum(input.value) + toNum(countItems.textContent)).toString();
+
+            input.value = '';
+        }
+        else if(input.value === '0' || input.valueAsNumber < 0){
             input.value = '';
             return;
-    }
+        }
+    })
+})
+
+inputs.forEach((input)=>{
+    input.addEventListener('input', (event)=>{
+        if(event.target.value === '-' || event.target.value < 0){
+            event.target.value = '';
+        }
     })
 })
 
@@ -84,7 +88,7 @@ priceCategory.addEventListener('click', (event)=>{
 
 
 
-function strToNum(str){
+function toNum(str){
     const tempArr = str.match(/[\-\d]+/);
     return Number(tempArr.toString());
 }
@@ -135,7 +139,7 @@ function selectionByPrice(item, priceIndex, index){
     }
 
     if(priceIndex === 1){
-        if(strToNum(prices[index].textContent) < 30){
+        if(toNum(prices[index].textContent) < 30){
             item.classList.remove('displayNone');
         }
         else{
@@ -144,7 +148,7 @@ function selectionByPrice(item, priceIndex, index){
     }
 
     if(priceIndex === 2){
-        if(strToNum(prices[index].textContent) < 50){
+        if(toNum(prices[index].textContent) < 50){
             item.classList.remove('displayNone');
         }
         else{
@@ -153,7 +157,7 @@ function selectionByPrice(item, priceIndex, index){
     }
 
     if(priceIndex === 3){
-        if(strToNum(prices[index].textContent) < 100){
+        if(toNum(prices[index].textContent) < 100){
             item.classList.remove('displayNone');
         }
         else{
@@ -162,7 +166,7 @@ function selectionByPrice(item, priceIndex, index){
     }
 
     if(priceIndex === 4){
-        if(strToNum(prices[index].textContent) < 150){
+        if(toNum(prices[index].textContent) < 150){
             item.classList.remove('displayNone');
         }
         else{
