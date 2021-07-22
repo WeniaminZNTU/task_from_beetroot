@@ -76,21 +76,23 @@ inputs.forEach((input)=>{
 
 // Task 1
 // =========================================================================================================
-category.addEventListener('click', (event)=>{
+category.addEventListener('change', (event)=>{
     selectionItems(category, priceCategory);
 });
 
 
-priceCategory.addEventListener('click', (event)=>{
+priceCategory.addEventListener('change', (event)=>{
     selectionItems(category, priceCategory);
-    
 });
 
 
 
 function toNum(str){
-    const tempArr = str.match(/(\d+)|(\-\d+)/);
-    return Number(tempArr.toString());
+    let tempArr = str.match(/\d+/);
+
+    console.log(tempArr);
+
+    return Number(tempArr[0]);
 }
 
 function selectionItems(category, price){
