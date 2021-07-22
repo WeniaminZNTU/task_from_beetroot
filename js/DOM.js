@@ -3,8 +3,6 @@
 
 let totalBuyPrice = document.getElementById('totalAmount');
 let countItems = document.getElementById('numOfItems');
-totalBuyPrice.textContent = '0';
-countItems.textContent = '0';
 
 
 const category = document.getElementById('category');
