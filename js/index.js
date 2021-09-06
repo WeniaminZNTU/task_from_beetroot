@@ -1,12 +1,14 @@
 'use strict';
 
-import {totalBuyPrice, countItems, category, priceCategory, cards, prices, multiplierCost, inputs, addButtons, checkout, wrapperModalWindow, closeModalWindowBtn, inputMail, inputPass, submitButton} from './DOM.js'
+import {totalBuyPrice, countItems, category, priceCategory, inputs, addButtons, checkout, wrapperModalWindow, closeModalWindowBtn, inputMail, inputPass, submitButton} from './DOM.js'
+import {toNum, selectionItems} from './functions.js';
 
 // Task 3
 // =========================================================================================================
+console.log(checkout);
 checkout.addEventListener('click', (event)=>{
     if((countItems.textContent) > 0){
-        wrapperModalWindow.classList.remove('displayNone');
+        wrapperModalWindow.classList.add('wrapperModalWindow');
     }
     else{
         alert('Вы ничего не выбрали');
@@ -14,7 +16,7 @@ checkout.addEventListener('click', (event)=>{
 })
 
 closeModalWindowBtn.addEventListener('click', (event)=> {
-    wrapperModalWindow.classList.toggle('displayNone');
+    wrapperModalWindow.classList.toggle('wrapperModalWindow');
     inputMail.value = '';
     inputPass.value = '';
 });
@@ -84,96 +86,3 @@ category.addEventListener('change', (event)=>{
 priceCategory.addEventListener('change', (event)=>{
     selectionItems(category, priceCategory);
 });
-
-
-
-function toNum(str){
-    let tempArr = str.match(/\d+/);
-
-    console.log(tempArr);
-
-    return Number(tempArr[0]);
-}
-
-function selectionItems(category, price){
-    cards.forEach((elem, index)=>{
-        if(category.selectedIndex === 0){
-            selectionByPrice(elem, price.selectedIndex, index);
-        }
-
-        if(category.selectedIndex === 1){
-            if(index < 4){
-            selectionByPrice(elem, price.selectedIndex, index);
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        }
-
-        if(category.selectedIndex === 2){
-            if(index >= 4 && index <= 7){
-                selectionByPrice(elem, price.selectedIndex, index);
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        }
-
-        if(category.selectedIndex === 3){
-            if(index > 7 && index <= 11){
-                selectionByPrice(elem, price.selectedIndex, index);
-            }
-            else{
-                elem.classList.add('displayNone');
-            }
-        }
-
-    
-    })
-
-
-}
-
-function selectionByPrice(item, priceIndex, index){
-
-    if(priceIndex === 0){
-        item.classList.remove('displayNone');
-    }
-
-    if(priceIndex === 1){
-        if(toNum(prices[index].textContent) < 30){
-            item.classList.remove('displayNone');
-        }
-        else{
-            item.classList.add('displayNone');
-        }
-    }
-
-    if(priceIndex === 2){
-        if(toNum(prices[index].textContent) < 50){
-            item.classList.remove('displayNone');
-        }
-        else{
-            item.classList.add('displayNone');
-        }
-    }
-
-    if(priceIndex === 3){
-        if(toNum(prices[index].textContent) < 100){
-            item.classList.remove('displayNone');
-        }
-        else{
-            item.classList.add('displayNone');
-        }
-    }
-
-    if(priceIndex === 4){
-        if(toNum(prices[index].textContent) < 150){
-            item.classList.remove('displayNone');
-        }
-        else{
-            item.classList.add('displayNone');
-        }
-    }
-
-}

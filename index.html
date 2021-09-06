@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="./css/myCss.css">
-    <script defer type="module" src="./js/DOM.js"></script>
-    <script defer type="module" src="./js/index.js"></script>
 </head>
 <body>
 <div class="app-container pt-40">
@@ -245,16 +243,18 @@
         </div>
     </footer>
 
-    <div id="wrapperModalWindow" class="wrapperModalWindow displayNone">
-        <div id="modalWindow" class="boxModalWindow ">
+    <div id="wrapperModalWindow" class="displayNone">
+        <div id="modalWindow" class="boxModalWindow">
             <button id="closeModalWindow" class="closeModalButton">X</button>
             <form class="mainForm">
-                <span class="padding">Введите данные</span>
-                <div class="padding">
-                <span class="padding">Имя: </span><input id="inputMail" type="text">
-                </div>
-                <div  class="inputPass padding">
-                <span  class="padding">Пароль: </span><input id="inputPass" type="password">
+                <div class="input-wrapper">
+                    <span class="padding">Введите данные</span>
+                    <div class="padding">
+                        <span>Имя: </span><input id="inputMail" type="text">
+                    </div>
+                    <div  class="inputPass padding">
+                        <span>Пароль: </span=><input id="inputPass" type="password">
+                    </div>
                 </div>
                 <button id="submitButton" class="submitButton" type="submit">Отправить</button>
                 <button id="cancelOrder" class="cancelOrder">Отменить заказ</button>
@@ -264,6 +264,8 @@
 
 </div><!-- /.app-container -->
 
-
+<script type="module" src="./js/DOM.js"></script>
+<script type="module" src="./js/functions.js"></script>
+<script type="module" src="./js/index.js"></script>
 </body>
 </html>
