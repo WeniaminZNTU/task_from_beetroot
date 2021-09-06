@@ -88,11 +88,7 @@ priceCategory.addEventListener('change', (event)=>{
 
 
 function toNum(str){
-    let tempArr = str.match(/\d+/);
-
-    console.log(tempArr);
-
-    return Number(tempArr[0]);
+    return Number(str.match(/\d+/)[0]);
 }
 
 function selectionItems(category, price){
